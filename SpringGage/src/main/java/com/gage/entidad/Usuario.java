@@ -1,83 +1,28 @@
 package com.gage.entidad;
 
-import java.io.Serializable;
-import java.util.Set;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Usuario implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4750158197315750126L;
+public class Usuario {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-	@GenericGenerator(name = "native", strategy = "native")
-	private Long codUsuario;
-
-	@Column
-	@NotBlank
-	@Size(min = 5, max = 8, message = "No se cumple las reglas del tamano")
-	private String firstName;
-	@Column
-	@NotBlank
-	private String lastName;
-	@Column
-	@NotBlank
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int cod_usuario;
 	private String email;
-	@Column
-	@NotBlank
-	private String username;
-	@Column
-	@NotBlank
+	private String first_name;
+	private String last_name;
 	private String password;
+	private String username;
 
-	@Transient
-	private String confirmPassword;
-
-	@Size(min = 1)
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "usuarioRol", joinColumns = @JoinColumn(name = "codUsuario"), inverseJoinColumns = @JoinColumn(name = "codRol"))
-	private Set<Rol> roles;
-
-	public Long getCodUsuario() {
-		return codUsuario;
+	public int getCod_usuario() {
+		return cod_usuario;
 	}
 
-	public void setCodUsuario(Long codUsuario) {
-		this.codUsuario = codUsuario;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setCod_usuario(int cod_usuario) {
+		this.cod_usuario = cod_usuario;
 	}
 
 	public String getEmail() {
@@ -88,12 +33,20 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getFirst_name() {
+		return first_name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+	public String getLast_name() {
+		return last_name;
+	}
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
 	}
 
 	public String getPassword() {
@@ -104,89 +57,12 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	public String getConfirmPassword() {
-		return confirmPassword;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
-	public Set<Rol> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Rol> roles) {
-		this.roles = roles;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((codUsuario == null) ? 0 : codUsuario.hashCode());
-		result = prime * result + ((confirmPassword == null) ? 0 : confirmPassword.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (codUsuario == null) {
-			if (other.codUsuario != null)
-				return false;
-		} else if (!codUsuario.equals(other.codUsuario))
-			return false;
-		if (confirmPassword == null) {
-			if (other.confirmPassword != null)
-				return false;
-		} else if (!confirmPassword.equals(other.confirmPassword))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (roles == null) {
-			if (other.roles != null)
-				return false;
-		} else if (!roles.equals(other.roles))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
-	}
-
-	
 
 }

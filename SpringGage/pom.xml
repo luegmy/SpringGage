@@ -45,11 +45,26 @@
 			<version>5.1.47</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.ocpsoft.rewrite/rewrite-servlet -->
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-servlet</artifactId>
+			<version>3.4.2.Final</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.ocpsoft.rewrite/rewrite-integration-faces -->
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-integration-faces</artifactId>
+			<version>3.4.2.Final</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
