@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Usuario {
@@ -11,10 +13,16 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cod_usuario;
+	@NotEmpty
+	@Email
 	private String email;
+	@NotEmpty
 	private String first_name;
+	@NotEmpty
 	private String last_name;
+	@NotEmpty
 	private String password;
+	@NotEmpty
 	private String username;
 
 	public int getCod_usuario() {

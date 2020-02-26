@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/plantillaBasica :: head">
+
+</head>
+
+<body>
+
+	<header th:replace="plantilla/plantillaBasica :: header"></header>
+
+	<div class="container">
+		<br>
+		<h2 th:if="${lista.isEmpty()}">No hay usuarios</h2>
+		<div th:if="${!lista.isEmpty()}">
+			<h2 th:text="${titulo}"></h2>
+			<div>
+				<a th:href="@{/vistas/usuario/save/0}"
+					class="btn btn-primary btn-sm" th:text="Nuevo"></a>
+			</div>
+			<table class="table">
+
+				<thead class="thead-dark">
+					<tr>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Correo</th>
+						<th>usuario</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="persona : ${lista}">
+						<td th:text="${persona.first_name}">
+						<td th:text="${persona.last_name}">
+						<td th:text="${persona.email}">
+						<td th:text="${persona.username}">
+						<td><a class="btn btn-info btn-sm"
+							th:href="@{/vistas/usuario/save/{id}(id=${persona.cod_usuario})}" th:text="Editar"></a></td>
+						<td><a class="btn btn-danger btn-sm"
+							th:href="@{/vistas/usuario/delete/{id}(id=${persona.cod_usuario})}" th:text=Eliminar
+							onclick="return confirm ('Estas seguro de eliminar?');"></a></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</div>
+
+	<footer th:replace="plantilla/plantillaBasica :: footer"></footer>
+
+</body>
+
+</html>

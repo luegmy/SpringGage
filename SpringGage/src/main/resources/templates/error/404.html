@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/plantillaBasica :: head">
+
+</head>
+
+<body>
+	<header th:replace="plantilla/plantillaBasica :: header"></header>
+
+	<div class="container text-center py-3">
+		<div class="panel bg-light">
+			<div class="panel-heading">
+				<h3 class="text-danger">
+					<span th:text="${error}"></span>-<span th:text="${status}"></span>
+				</h3>
+			</div>
+			<div class="panel-body">
+				<img th:src="@{/imagen/avatar.png}" width="50" height="50"> <br>
+				<h4>Pagina solicitada no se encuentra</h4>
+				<br>
+				<button class="btn btn-success" onclick="goBack()">Regresar</button>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="plantilla/plantillaBasica :: footer"></footer>
+	
+	<script>
+	function goBack(){
+		window.history.back();
+	}
+	</script>
+</body>
+</html>
