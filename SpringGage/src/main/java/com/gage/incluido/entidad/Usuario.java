@@ -1,4 +1,4 @@
-package com.gage.entidad;
+package com.gage.incluido.entidad;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +20,6 @@ public class Usuario {
 	private String first_name;
 	@NotEmpty
 	private String last_name;
-	@NotEmpty
 	private String password;
 	@NotEmpty
 	private String username;

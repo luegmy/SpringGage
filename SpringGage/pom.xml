@@ -58,11 +58,13 @@
 			<artifactId>rewrite-integration-faces</artifactId>
 			<version>3.4.2.Final</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 
 	</dependencies>
 
