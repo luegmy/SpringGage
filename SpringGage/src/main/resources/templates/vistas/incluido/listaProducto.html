@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/plantillaBasica :: head">
+
+</head>
+
+<body>
+
+	<header th:replace="plantilla/plantillaBasica :: header"></header>
+
+	<div class="container">
+		<br>
+		<h2 th:if="${lista.isEmpty()}">No hay productos</h2>
+		<div th:if="${!lista.isEmpty()}">
+			<h2 th:text="${titulo}"></h2>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" id="busqueda"
+					placeholder="Busqueda"> <a
+					th:href="@{/vistas/incluido/producto/crear/}"
+					class="btn btn-primary btn-sm" th:text="Nuevo"></a>
+			</div>
+			<table class="table table-hover" id="tablaProducto">
+
+				<thead class="thead-dark">
+					<tr>
+						<th>Descripcion</th>
+						<th>Costo</th>
+						<th>Venta</th>
+						<th>Tipo</th>
+						<th>UM</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="p : ${lista}">
+						<td th:text="${p.descripcion}">
+						<td th:text="${p.precioCompra}">
+						<td th:text="${p.precioVenta}">
+						<td th:text="${p.tipo.descripcion}">
+						<td th:text="${p.medida.descripcion}">
+						<td><a class="btn btn-info btn-sm"
+							th:href="@{/vistas/incluido/producto/editar/{id}(id=${p.codProducto})}"
+							th:text="Editar"></a></td>
+						<td><a class="btn btn-danger btn-sm btn-eliminar"
+							th:href="@{/vistas/incluido/producto/eliminar/{id}(id=${p.codProducto})}"
+							th:text=Eliminar></a></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</div>
+
+		<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">Eliminar producto</h3>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p class="alert alert-danger pull-right">Estas seguro de
+							querer eliminar el producto?</p>
+					</div>
+					<div class="modal-footer">
+						<a href="" type="button" class="btn btn-danger" id="btnEliminarSi">Eliminar</a>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="plantilla/plantillaBasica :: footer"></footer>
+
+</body>
+
+</html>

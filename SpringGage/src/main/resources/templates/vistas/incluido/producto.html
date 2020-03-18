@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Producto</title>
+
+
+
+<!-- Bootstrap CSS -->
+
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}">
+
+</head>
+
+<body>
+
+	<div class="container">
+		<br>
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}">
+			</div>
+			<div class="card-body">
+				<form action="#" th:action="@{/vistas/incluido/producto/guardar}"
+					th:object="${producto}" method="post">
+					<div class="form-group row">
+						<label for="descripcion" class="col-md-2">Descripcion</label> <input
+							type="text" class="form-control form-control-sm col-md-6"
+							id="descripcion" th:field="*{descripcion}" name="descripcion"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
+					</div>
+
+
+					<input type="hidden" th:field="*{codProducto}" id="codigo">
+
+					<div class="form-group row">
+						<label for="PrecioCompra" class="col-md-2">Costo</label> <input
+							type="text" class="form-control form-control-sm col-md-6"
+							id="precioCompra" th:field="*{precioCompra}" name="precioCompra">
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('precioCompra')}"
+							th:errors="*{precioCompra}"></small>
+					</div>
+
+					<div class="form-group row">
+						<label for="PrecioVenta" class="col-md-2">Venta</label> <input
+							type="text" class="form-control form-control-sm col-md-6"
+							id="precioVenta" th:field="*{precioVenta}" name="precioVenta"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('precioVenta')}" th:errors="*{precioVenta}"></small>
+					</div>
+
+					<div class="form-group row">
+						<label for="tipo" class="col-md-2">Tipo</label> <select
+							name="tipo" id="tipo"
+							th:field="*{tipo}" class="form-control form-control-sm col-md-6">
+							<option th:each="t : ${tipos}" th:value="${t.codTipo}"
+								th:text="${t.descripcion}"></option>
+						</select>
+					</div>
+					
+					<div class="form-group row">
+						<label for="medida" class="col-md-2">U.M</label> <select
+							name="medidad" id="medida"
+							th:field="*{medida}" class="form-control form-control-sm col-md-6">
+							<option th:each="m : ${medidas}" th:value="${m.codMedida}"
+								th:text="${m.abreviatura}"></option>
+						</select>
+					</div>
+
+
+					<div class="card-footer bg-danger">
+						<input type="submit" class="btn btn-success btn-sm"
+							th:value="Guardar">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

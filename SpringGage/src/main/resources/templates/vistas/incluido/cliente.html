@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Cliente</title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<body>
+
+	<div class="container">
+		<br>
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}">
+			</div>
+			<div class="card-body">
+				<form action="#" th:action="@{/vistas/incluido/cliente/guardar}"
+					th:object="${cliente}" method="post">
+					<div class="form-group row">
+						<label for="nombre" class="col-md-2">Nombre</label> <input
+							type="text" class="form-control form-control-sm col-md-6"
+							id="nombre" th:field="*{nombre}" name="nombre"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+					</div>
+
+
+					<input type="hidden" th:field="*{codCliente}" id="codigo">
+
+					<div class="form-group row">
+						<label for="direccion" class="col-md-2">Direccion</label> <input
+							type="text" class="form-control form-control-sm col-md-6"
+							id="direccion" th:field="*{direccion}" name="direccion">
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('direccion')}"
+							th:errors="*{direccion}"></small>
+					</div>
+					
+					<div class="form-group row">
+						<label for="documento" class="col-md-2">Documento</label> <select
+							name="documento" id="doc"
+							th:field="*{documento}" class="form-control form-control-sm col-md-6">
+							<option th:each="d : ${documentos}" th:value="${d.codDocumento}"
+								th:text="${d.descripcion}"></option>
+						</select>
+					</div>
+
+					<div class="form-group row">
+						<label for="numero" class="col-md-2">Nro.</label> <input
+							type="text" class="form-control form-control-sm col-md-6"
+							id="numero" th:field="*{nroDocumento}" name="numero"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('nroDocumento')}" th:errors="*{nroDocumento}"></small>
+					</div>
+
+					<div class="form-group row">
+						<label for="telefono" class="col-md-2">Telefono</label> <input
+							type="text" class="form-control form-control-sm col-md-6"
+							id="telefono" th:field="*{telefono}" name="telefono"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+					</div>
+
+					<div class="form-group row">
+						<label for="correo" class="col-md-2">Correo</label> <input
+							type="text" class="form-control form-control-sm col-md-6"
+							id="correo" th:field="*{correo}" name="correo"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></small>
+					</div>
+
+					<div class="card-footer bg-danger">
+						<input type="submit" class="btn btn-success btn-sm"
+							th:value="Guardar">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
