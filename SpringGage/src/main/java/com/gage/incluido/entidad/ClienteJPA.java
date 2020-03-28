@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_cliente")
@@ -23,14 +23,14 @@ public class ClienteJPA implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codCliente;
+	@NotNull(message = "Ingrese un nombre")
 	private String nombre;
+	@NotNull(message = "Ingrese una direccion")
 	private String direccion;
+	@NotNull(message = "Seleccione el docuemnto")
 	private String nroDocumento;
 	private String telefono;
 	private String correo;
-
-	@Transient
-	private String codigoDocumento;
 
 	@ManyToOne
 	@JoinColumn(name = "codDocumento")
@@ -82,14 +82,6 @@ public class ClienteJPA implements Serializable {
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
-	}
-
-	public String getCodigoDocumento() {
-		return codigoDocumento;
-	}
-
-	public void setCodigoDocumento(String codigoDocumento) {
-		this.codigoDocumento = codigoDocumento;
 	}
 
 	public DocumentoIdentidadJPA getDocumento() {

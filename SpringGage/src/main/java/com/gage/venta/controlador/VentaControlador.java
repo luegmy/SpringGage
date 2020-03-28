@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gage.incluido.servicio.ClienteServicio;
 import com.gage.venta.entidad.VentaJPA;
 import com.gage.venta.repositorio.ComprobanteDAO;
 import com.gage.venta.servicio.VentaServicio;
@@ -21,6 +22,9 @@ public class VentaControlador {
 
 	@Autowired
 	private VentaServicio ventaServicio;
+	
+	@Autowired
+	private ClienteServicio clienteServicio;
 
 	@Autowired
 	private ComprobanteDAO comprobanteRepositorio;
@@ -38,6 +42,7 @@ public class VentaControlador {
 		model.addAttribute("titulo", "Generar venta");
 		model.addAttribute("venta", venta);
 		model.addAttribute("comprobantes", comprobanteRepositorio.findAll());
+		model.addAttribute("clientes", clienteServicio.listar());
 		return "/vistas/venta/venta";
 	}
 

@@ -11,10 +11,9 @@
 
 
 <!-- Bootstrap CSS -->
-
-<link href="../static/css/bootstrap.css" rel="stylesheet"
-	th:href="@{/css/bootstrap.min.css}">
-
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/awesomplete.theme.css}">
+<link rel="stylesheet" th:href="@{/css/awesomplete.base.css}">
 </head>
 
 <body>
@@ -29,27 +28,28 @@
 				<form action="#" th:action="@{/vistas/venta/guardar}"
 					th:object="${venta}" method="post">
 					<div class="form-group row">
-						<label for="comprobante" class="col-md-2">Comprobante</label> 
-						<select
-							name="comprobante" id="comprobante"
-							th:field="*{comprobante}" class="form-control form-control-sm col-md-4">
-							<option th:each="c : ${comprobantes}" th:value="${c.codComprobante}"
-								th:text="${c.descripcion}"></option>
+						<label for="comprobante" class="col-md-2">Comprobante</label> <select
+							name="comprobante" id="comprobante" th:field="*{comprobante}"
+							class="form-control form-control-sm col-md-4">
+							<option th:each="c : ${comprobantes}"
+								th:value="${c.codComprobante}" th:text="${c.descripcion}"></option>
 						</select>
 						
-						<label for="nombre" class="col-md-1">Serie</label> 
-						<input
-							type="text" class="form-control form-control-sm col-md-2"
-							id="nombre" name="nombre"> 
-							
-							<label for="nombre" class="col-md-1">Nro.</label> 
-						<input
-							type="text" class="form-control form-control-sm col-md-2"
-							id="nombre" name="nombre"> 
+						 <label for="nombre" class="col-md-1">Serie</label> <input
+							type="text" class="form-control form-control-sm col-md-2 serie"
+							id="nombre" name="nombre"> <label for="nombre"
+							class="col-md-1">Nro.</label> <input type="text"
+							class="form-control form-control-sm col-md-2" id="nombre"
+							name="nombre">
 					</div>
-					
+
 					<div class="form-group row">
-					
+						<label for="cliente" class="col-md-2">Cliente</label> 
+						<select name="cliente" id="cliente" th:field="*{cliente}"
+						class="form-control form-control-sm col-md-4" >
+						<option th:each="c : ${clientes}" 
+								th:value="${c.codCliente}" th:text="${c.nombre}"></option>
+						</select> 
 					</div>
 
 					<input type="hidden" th:field="*{numComprobante}" id="codigo">
@@ -57,6 +57,7 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" th:src="@{/js/awesomplete.min.js}"></script>
 </body>
 
 </html>

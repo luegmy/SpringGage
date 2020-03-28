@@ -34,3 +34,4 @@ $('.btn-eliminar').on('click', function(e) {
 	$('#modalEliminar').modal();
 });
 
+
