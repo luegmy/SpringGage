@@ -1,6 +1,7 @@
 package com.gage.venta.servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class VentaServicioImplementa extends GenericoServicioImplemeta<VentaJPA,
 	VentaDAO ventaDao;
 
 	@Override
-	public CrudRepository<VentaJPA, Integer> getDao() {
+	public JpaRepository<VentaJPA, Integer> getDao() {
 		return ventaDao;
 	}
 

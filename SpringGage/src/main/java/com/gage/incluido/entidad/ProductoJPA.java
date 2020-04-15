@@ -36,14 +36,6 @@ public class ProductoJPA implements Serializable {
 	@JoinColumn(name = "codMedida")
 	private UnidadMedidaJPA medida;
 
-	@Transient
-	private String descripcionTipo;
-
-	@Transient
-	private String descripcionMedida;
-
-	@Transient
-	private int cantidad;
 
 	public int getCodProducto() {
 		return codProducto;
@@ -93,30 +85,6 @@ public class ProductoJPA implements Serializable {
 		this.medida = medida;
 	}
 
-	public String getDescripcionTipo() {
-		return descripcionTipo;
-	}
-
-	public void setDescripcionTipo(String descripcionTipo) {
-		this.descripcionTipo = descripcionTipo;
-	}
-
-	public String getDescripcionMedida() {
-		return descripcionMedida;
-	}
-
-	public void setDescripcionMedida(String descripcionMedida) {
-		this.descripcionMedida = descripcionMedida;
-	}
-
-	public int getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
-	}
-	
 	
 
 }
