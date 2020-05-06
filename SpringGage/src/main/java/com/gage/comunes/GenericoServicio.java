@@ -11,10 +11,14 @@ public interface GenericoServicio<T, ID extends Serializable> {
 	T guardar(T entidad);
 
 	void eliminar(ID codigo);
+	
+	void eliminar(T entidad);
 
 	T obtener(ID codigo);
 
 	List<T> listar();
 	
 	Page<T>paginas(Pageable pagina);
+	
+	List<T>guardarLista(List<T> lista);
 }

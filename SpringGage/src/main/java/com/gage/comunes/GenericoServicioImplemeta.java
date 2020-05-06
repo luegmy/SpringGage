@@ -24,6 +24,11 @@ public abstract class GenericoServicioImplemeta<T, ID extends Serializable> impl
 	public void eliminar(ID codigo) {
 		getDao().deleteById(codigo);
 	}
+	
+	@Override
+	public void eliminar(T entidad) {
+		getDao().delete(entidad);
+	}
 
 	@Override
 	public T obtener(ID codigo) {
@@ -45,6 +50,11 @@ public abstract class GenericoServicioImplemeta<T, ID extends Serializable> impl
 	public Page<T>paginas(Pageable pagina){
 		return getDao().findAll(pagina);
 		
+	}
+	
+	@Override
+	public List<T> guardarLista(List<T> lista) {
+		return getDao().saveAll(lista);
 	}
 
 }

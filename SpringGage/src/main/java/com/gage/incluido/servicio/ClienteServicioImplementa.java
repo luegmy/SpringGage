@@ -20,4 +20,5 @@ public class ClienteServicioImplementa extends GenericoServicioImplemeta<Cliente
 		return clienteDao;
 	}
 
+
 }

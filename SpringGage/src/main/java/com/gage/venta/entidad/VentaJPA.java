@@ -16,8 +16,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gage.incluido.entidad.ClienteJPA;
 import com.gage.seguridad.entidad.UsuarioJPA;
+
 
 @Entity
 @Table(name = "tb_venta")
@@ -48,6 +50,7 @@ public class VentaJPA implements Serializable {
 	@JoinColumn(name = "codUsuario")
 	private UsuarioJPA usuario;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
 	private List<DetalleVentaJPA> detalles;
 
