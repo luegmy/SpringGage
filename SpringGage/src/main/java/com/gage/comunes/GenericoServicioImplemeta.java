@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public abstract class GenericoServicioImplemeta<T, ID extends Serializable> implements GenericoServicio<T, ID> {
 
-	public abstract JpaRepository<T, ID> getDao();
+	public abstract  JpaRepository<T, ID> getDao();
 
 	@Override
 	public T guardar(T entidad) {

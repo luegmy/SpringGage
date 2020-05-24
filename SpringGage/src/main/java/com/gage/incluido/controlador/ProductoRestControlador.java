@@ -3,13 +3,20 @@ package com.gage.incluido.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gage.incluido.entidad.ProductoJPA;
@@ -33,6 +40,16 @@ public class ProductoRestControlador {
 	@Autowired
 	private UnidadMedidaDAO medidaRepositorio;
 
+	@GetMapping("/pagina")
+	public ResponseEntity<Page<ProductoJPA>> listar(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "nombre") String order,
+			@RequestParam(defaultValue = "true") boolean asc) {
+		Page<ProductoJPA> productos = productoServicio.paginas(PageRequest.of(page, size, Sort.by(order)));
+		if (!asc)
+			productos = productoServicio.paginas(PageRequest.of(page, size, Sort.by(order).descending()));
+		return new ResponseEntity<Page<ProductoJPA>>(productos, HttpStatus.OK);
+	}
+
 	@GetMapping("/")
 	public List<ProductoJPA> listar() {
 		return productoServicio.listar();
@@ -42,11 +59,15 @@ public class ProductoRestControlador {
 	public ProductoJPA guardar(@RequestBody ProductoJPA producto) {
 		return productoServicio.guardar(producto);
 	}
-	
+
 	@GetMapping("/editar/{codigo}")
 	public ProductoJPA editar(@PathVariable("codigo") int codigo) {
 		return productoServicio.obtener(codigo);
+	}
 
+	@DeleteMapping("/eliminar/{codigo}")
+	public void eliminar(@PathVariable("codigo") int codigo) {
+		productoServicio.eliminar(codigo);
 	}
 
 	@GetMapping("/medida")
@@ -59,7 +80,6 @@ public class ProductoRestControlador {
 		return (List<TipoProductoJPA>) tipoRepositorio.findAll();
 	}
 
-	
 	@GetMapping("/crear")
 	public String crear(Model model) {
 		ProductoJPA producto = new ProductoJPA();
@@ -69,6 +89,5 @@ public class ProductoRestControlador {
 		model.addAttribute("medidas", medidaRepositorio.findAll());
 		return "/vistas/incluido/producto";
 	}
-
 
 }

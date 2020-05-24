@@ -18,6 +18,7 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gage.incluido.entidad.ClienteJPA;
+import com.gage.incluido.entidad.EstadoJPA;
 import com.gage.seguridad.entidad.UsuarioJPA;
 
 
@@ -49,9 +50,13 @@ public class VentaJPA implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "codUsuario")
 	private UsuarioJPA usuario;
+	
+	@ManyToOne
+	@JoinColumn(name = "codEstado")
+	private EstadoJPA estado;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "venta", cascade = CascadeType.ALL,orphanRemoval =true)
 	private List<DetalleVentaJPA> detalles;
 
 	public int getNumComprobante() {
@@ -132,6 +137,14 @@ public class VentaJPA implements Serializable {
 
 	public void setUsuario(UsuarioJPA usuario) {
 		this.usuario = usuario;
+	}
+
+	public EstadoJPA getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoJPA estado) {
+		this.estado = estado;
 	}
 
 	public List<DetalleVentaJPA> getDetalles() {
